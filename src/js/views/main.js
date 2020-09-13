@@ -1,10 +1,18 @@
-import React, { useEffect } from "react";
-import { HorizontalScrollList } from "../component/horizontal-scroll-list";
+import React, { useState, useEffect } from "react";
+import { HorizontalScrollingItemList } from "../component/horizontal-scrolling-item-list";
+
+import { Card } from "../component/bootstrap/card";
 
 export const Main = () => {
+	const [items, setItems] = useState([]);
+	const [planets, setPlanets] = useState([]);
+	const [vehicles, setVehicles] = useState([]);
+
 	useEffect(() => {
 		fetchRead();
 	}, []);
+
+	function doFetch() {}
 
 	function fetchRead() {
 		console.log("fetchRead");
@@ -27,47 +35,31 @@ export const Main = () => {
 			.then(json => {
 				//here is were your code should start after the fetch finishes
 				console.log(json); //this will print on the console the exact object received from the server
-				let jsonMap = json.results.map(function(character) {
+				let jsonMap = json.results.map(function(character, index) {
 					let info = { name: character.name };
-					return info;
+					//return info;
+					return <Card key={index} name={info.name} />;
 				});
-				/*
-				var orders = [
-					{ name: "chain", description: "necklace chain", status: "shipped" },
-					{ name: "pen", description: "ball pen", status: "shipped" },
-					{ name: "book", description: "travel diary", status: "delivered" },
-					{ name: "brush", description: "paint brush", status: "delivered" }
-				];
-				orders = json.results;
-				console.log(orders);
-				var orderInfo = orders.map(function(order) {
-					if (order.status === "delivered") {
-						var info = {
-							orderName: order.name,
-							orderDesc: order.description
-						};
-						return info;
-					}
-				});
-				console.log(orderInfo);
-*/
 				console.log(jsonMap);
+				setItems(jsonMap);
 			})
 			.catch(error => {
 				//error handling
 				console.log(error);
 			});
 	}
-
+	// <div>{jsonMap}</div>
+	// 			<div>{items}</div>
+	console.log("-->lol");
 	return (
 		<div className="">
 			<h1>Main view</h1>
 
-			<HorizontalScrollList />
+			<HorizontalScrollingItemList resource={"Characters"} items={items} />
 
-			<h1>Planets</h1>
+			<HorizontalScrollingItemList resource={"Planets"} items={planets} />
 
-			<h1>Vehicles</h1>
+			<HorizontalScrollingItemList resource={"Vehicles"} items={vehicles} />
 		</div>
 	);
 };

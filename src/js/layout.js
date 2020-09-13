@@ -6,9 +6,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 //import { Demo } from "./views/_demo";
 //import { Single } from "./views/_single";
 import { Main } from "./views/main";
-import { VehicleDetails } from "./views/vehicle-details";
-import { PlanetDetails } from "./views/planet-details";
-import { CharacterDetails } from "./views/character-details";
+import { VehicleDetail } from "./views/vehicle-detail";
+import { PlanetDetail } from "./views/planet-detail";
+import { CharacterDetail } from "./views/character-detail";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -28,8 +28,14 @@ const Layout = () => {
 					<Route exact path="/">
 						<Main />
 					</Route>
-					<Route exact path="/VehicleDetails/:id">
-						<VehicleDetails />
+					<Route exact path="/CharacterDetail/:id">
+						<CharacterDetail />
+					</Route>
+					<Route exact path="/PlanetDetail/:id">
+						<PlanetDetail />
+					</Route>
+					<Route exact path="/VehicleDetail/:id">
+						<VehicleDetail />
 					</Route>
 					<Route>
 						<h1>Not found!</h1>
