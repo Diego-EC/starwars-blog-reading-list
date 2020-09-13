@@ -1,10 +1,14 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import ScrollToTop from "./component/scrollToTop";
+//import ScrollToTop from "./component/_scrollToTop";
 
-import { Home } from "./views/home";
-import { Demo } from "./views/demo";
-import { Single } from "./views/single";
+//import { Home } from "./views/_home";
+//import { Demo } from "./views/_demo";
+//import { Single } from "./views/_single";
+import { Main } from "./views/main";
+import { VehicleDetails } from "./views/vehicle-details";
+import { PlanetDetails } from "./views/planet-details";
+import { CharacterDetails } from "./views/character-details";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -19,24 +23,19 @@ const Layout = () => {
 	return (
 		<div className="d-flex flex-column h-100">
 			<BrowserRouter basename={basename}>
-				<ScrollToTop>
-					<Navbar />
-					<Switch>
-						<Route exact path="/">
-							<Home />
-						</Route>
-						<Route exact path="/demo">
-							<Demo />
-						</Route>
-						<Route exact path="/single/:theid">
-							<Single />
-						</Route>
-						<Route>
-							<h1>Not found!</h1>
-						</Route>
-					</Switch>
-					<Footer />
-				</ScrollToTop>
+				<Navbar />
+				<Switch>
+					<Route exact path="/">
+						<Main />
+					</Route>
+					<Route exact path="/VehicleDetails/:id">
+						<VehicleDetails />
+					</Route>
+					<Route>
+						<h1>Not found!</h1>
+					</Route>
+				</Switch>
+				<Footer />
 			</BrowserRouter>
 		</div>
 	);
