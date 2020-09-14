@@ -1,7 +1,9 @@
 import React from "react";
 
-export const CharacterDetail = () => (
-	<div className="">
-		<h1>CharacterDetail view</h1>
-	</div>
-);
+export const CharacterDetail = props => {
+	return (
+		<div className="">
+			<h1>CharacterDetail view {this.props}</h1>
+		</div>
+	);
+};

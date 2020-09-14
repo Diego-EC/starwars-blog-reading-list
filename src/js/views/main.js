@@ -10,9 +10,13 @@ export const Main = () => {
 
 	const SWAPI_ROOT = "https://swapi.dev/api/";
 	const CHARACTERS_ENDPOINT = "people/";
+	const PLANETS_ENDPOINT = "planets/";
+	const VEHICLES_ENDPOINT = "vehicles/";
 
 	useEffect(() => {
 		fetchGetCharacters();
+		fetchGetPlanets();
+		fetchGetVehicles();
 	}, []);
 
 	function doFetch(endpoint, method) {
@@ -26,10 +30,8 @@ export const Main = () => {
 		return fetch(endpoint, fetchOptions)
 			.then(response => {
 				if (response.ok) {
-					console.log("  fetchRead OK");
 					return response.json();
 				} else {
-					console.log("  fetchRead ERR");
 					throw Error(response.statusText);
 				}
 				console.log(response);
@@ -38,6 +40,7 @@ export const Main = () => {
 			.catch(error => {
 				console.log(error);
 				alert("oh oh, problema gordo.");
+				throw Error(error.statusText);
 				return null;
 			});
 	}
@@ -46,22 +49,42 @@ export const Main = () => {
 		console.log("fetchGetCharacters");
 		let json = await doFetch(SWAPI_ROOT + CHARACTERS_ENDPOINT, "GET");
 		if (json) {
-			console.log("json OK");
 			let jsonMap = json.results.map(function(character, index) {
-				let info = { name: character.name };
 				let details = [
 					"Gender: " + character.gender,
 					"Hair Color: " + character.hair_color,
 					"Eye Color: " + character.eye_color
 				];
-				return <Card key={index} name={info.name} details={details} />;
+				return <Card key={index} name={character.name} details={details} />;
 			});
-			console.log(jsonMap);
 			setCharacters(jsonMap);
 		}
 	}
 
-	console.log("-->lol");
+	async function fetchGetPlanets() {
+		console.log("fetchGetPlanets");
+		let json = await doFetch(SWAPI_ROOT + PLANETS_ENDPOINT, "GET");
+		if (json) {
+			let jsonMap = json.results.map(function(planet, index) {
+				let details = ["Population: " + planet.population, "Terrain: " + planet.terrain];
+				return <Card key={index} name={planet.name} details={details} />;
+			});
+			setPlanets(jsonMap);
+		}
+	}
+
+	async function fetchGetVehicles() {
+		console.log("fetchGetVehicles");
+		let json = await doFetch(SWAPI_ROOT + VEHICLES_ENDPOINT, "GET");
+		if (json) {
+			let jsonMap = json.results.map(function(vehicle, index) {
+				let details = ["Manufacturer: " + vehicle.manufacturer, "Model: " + vehicle.model];
+				return <Card key={index} name={vehicle.name} details={details} />;
+			});
+			setVehicles(jsonMap);
+		}
+	}
+
 	return (
 		<div className="container">
 			<h1>Main view</h1>

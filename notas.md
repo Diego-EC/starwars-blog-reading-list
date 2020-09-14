@@ -3,6 +3,7 @@
 - detalles-character
 - detalles-planet
 - vehicle-detail
+> Las de detalle igual las uno en una solo
 
 ## Componentes
 - Navbar

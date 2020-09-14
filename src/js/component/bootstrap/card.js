@@ -23,12 +23,14 @@ export const Card = props => {
 		<div className="col-3">
 			<div className="card card-block">
 				<img src={starWars400x200} className="card-img-top" alt="star wars image" />
-				<div className="card-body">
+				<div className="card-body d-flex flex-column">
 					<h5 className="card-title">{props.name}</h5>
 					{mapDetails}
-					<div className="mt-3">
-						<ButtonSeeDetail />
-						<ButtonFavorite />
+					<div className="mt-auto">
+						<div className="mt-3 d-flex justify-content-between ">
+							<ButtonSeeDetail />
+							<ButtonFavorite />
+						</div>
 					</div>
 				</div>
 			</div>
