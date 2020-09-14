@@ -13,6 +13,8 @@
   - https://stackoverflow.com/questions/41962898/bootstrap-horizontal-scrolling
   - https://www.codeply.com/go/GoFQqQAFhN
 - card / detail
+- Button "Learn more"
+- Button "favorite"
 - footer
 
 

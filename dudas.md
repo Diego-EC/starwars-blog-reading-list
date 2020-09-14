@@ -14,3 +14,5 @@
 
 7. let jsonMap = json.results.map(function(character, index) {
     ¿cómo mapeo el json completo?
+
+8. ¿Hago una carta para cada item? (characters, planets, vehicles)

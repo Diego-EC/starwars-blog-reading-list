@@ -4,27 +4,30 @@ import { HorizontalScrollingItemList } from "../component/horizontal-scrolling-i
 import { Card } from "../component/bootstrap/card";
 
 export const Main = () => {
-	const [items, setItems] = useState([]);
+	const [characters, setCharacters] = useState([]);
 	const [planets, setPlanets] = useState([]);
 	const [vehicles, setVehicles] = useState([]);
 
+	const SWAPI_ROOT = "https://swapi.dev/api/";
+	const CHARACTERS_ENDPOINT = "people/";
+
 	useEffect(() => {
-		fetchRead();
+		fetchGetCharacters();
 	}, []);
 
-	function doFetch() {}
+	function doFetch(endpoint, method) {
+		console.log("doFetch");
 
-	function fetchRead() {
-		console.log("fetchRead");
-		fetch("https://swapi.dev/api/people/", {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json"
-			}
-		})
+		let fetchOptions = {
+			method: method,
+			headers: { "Content-Type": "application/json" }
+		};
+
+		return fetch(endpoint, fetchOptions)
 			.then(response => {
 				if (response.ok) {
 					console.log("  fetchRead OK");
+					return response.json();
 				} else {
 					console.log("  fetchRead ERR");
 					throw Error(response.statusText);
@@ -32,33 +35,38 @@ export const Main = () => {
 				console.log(response);
 				return response.json();
 			})
-			.then(json => {
-				//here is were your code should start after the fetch finishes
-				console.log(json); //this will print on the console the exact object received from the server
-				let jsonMap = json.results.map(function(character, index) {
-					let info = { name: character.name };
-					//return info;
-					return <Card key={index} name={info.name} />;
-				});
-				console.log(jsonMap);
-				setItems(jsonMap);
-			})
 			.catch(error => {
-				//error handling
 				console.log(error);
+				alert("oh oh, problema gordo.");
+				return null;
 			});
 	}
-	// <div>{jsonMap}</div>
-	// 			<div>{items}</div>
+
+	async function fetchGetCharacters() {
+		console.log("fetchGetCharacters");
+		let json = await doFetch(SWAPI_ROOT + CHARACTERS_ENDPOINT, "GET");
+		if (json) {
+			console.log("json OK");
+			let jsonMap = json.results.map(function(character, index) {
+				let info = { name: character.name };
+				let details = [
+					"Gender: " + character.gender,
+					"Hair Color: " + character.hair_color,
+					"Eye Color: " + character.eye_color
+				];
+				return <Card key={index} name={info.name} details={details} />;
+			});
+			console.log(jsonMap);
+			setCharacters(jsonMap);
+		}
+	}
+
 	console.log("-->lol");
 	return (
-		<div className="">
+		<div className="container">
 			<h1>Main view</h1>
-
-			<HorizontalScrollingItemList resource={"Characters"} items={items} />
-
+			<HorizontalScrollingItemList resource={"Characters"} items={characters} />
 			<HorizontalScrollingItemList resource={"Planets"} items={planets} />
-
 			<HorizontalScrollingItemList resource={"Vehicles"} items={vehicles} />
 		</div>
 	);
