@@ -10,7 +10,7 @@ export const HorizontalScrollingItemList = props => {
 	//const [items, setItems] = useState([]);
 	console.log("--> HorizontalScrollingItemList");
 	return (
-		<div className="container-fluid">
+		<div className="container-fluid mt-5">
 			<h2>{props.resource}</h2>
 			<div className="overflow-auto row flex-nowrap">{props.items}</div>
 		</div>

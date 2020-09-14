@@ -12,10 +12,15 @@ export const ButtonSeeDetail = props => {
             </Link>
             
             <button onClick={() => this.props.history.push("/CharacterDetail/1")}>{BUTTON_LABEL}</button>
+
+            //<button onClick={() => props.history.push("/CharacterDetail/1")}>Push</button>
      */
+	console.log(this);
 	return (
-		<Link to="/CharacterDetail/1">
-			<button className="btn btn-outline-primary">{BUTTON_LABEL}</button>
-		</Link>
+		<div>
+			<Link to="/character-detail/1/pepe">
+				<button className="btn btn-outline-primary">{BUTTON_LABEL}</button>
+			</Link>
+		</div>
 	);
 };

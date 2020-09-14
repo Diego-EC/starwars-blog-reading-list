@@ -28,9 +28,7 @@ const Layout = () => {
 					<Route exact path="/">
 						<Main />
 					</Route>
-					<Route exact path="/CharacterDetail/:id">
-						<CharacterDetail />
-					</Route>
+					<Route exact path="/character-detail/:id/:name" component={CharacterDetail} />
 					<Route exact path="/PlanetDetail/:id">
 						<PlanetDetail />
 					</Route>
