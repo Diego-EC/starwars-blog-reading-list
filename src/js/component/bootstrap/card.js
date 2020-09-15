@@ -7,6 +7,7 @@ import "../../../styles/index.scss";
 
 export const Card = props => {
 	Card.propTypes = {
+		index: PropTypes.number,
 		name: PropTypes.string,
 		details: PropTypes.array
 	};
@@ -28,7 +29,7 @@ export const Card = props => {
 					{mapDetails}
 					<div className="mt-auto">
 						<div className="mt-3 d-flex justify-content-between ">
-							<ButtonSeeDetail />
+							<ButtonSeeDetail index={props.index} name={props.name} />
 							<ButtonFavorite />
 						</div>
 					</div>

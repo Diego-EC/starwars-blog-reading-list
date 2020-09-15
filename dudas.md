@@ -25,6 +25,8 @@ en este caso está bien. Tienen las mismas lógicas además de estilo.
 <!--<button onClick={() => this.props.history.push("/login")}>Take me to login</button>-->
 Tengo que usar Link?
 solución: useParams
+https://reactrouter.com/web/guides/quick-start
+https://reactrouter.com/web/api/Hooks/useparams
 import { useParams } from "react-router-dom";
 destructure asingment
 ```js
@@ -35,3 +37,56 @@ destructure asingment
 		</div>
     );
 ```
+
+## de Context api
+10. 
+- Utilizando el código de ejemplo de la documentación me da el error
+```js
+// Step 2: Create a ContextWrapper component that has to be the parent of every consumer.
+import React from 'react';
+
+export const AppContext = React.createContext(null);
+
+export class ContextWrapper extends React.Component {
+	constructor() {
+	    super();
+	    this.state = {
+		store: {
+			todos: ["Make the bed", "Take out the trash"]
+		},
+		actions: {
+			addTask: title => this.setState({ todos: this.state.todos.concat(title) })
+		}
+	    };
+	}
+	render() {
+		return (
+		<AppContext.Provider value={this.state}>
+	        	{this.props.children}
+		</AppContext.Provider>
+		);
+	}
+}
+```
+
+> react 'children' is missing in props validation
+- que resuelvo con 
+https://stackoverflow.com/questions/38684925/react-eslint-error-missing-in-props-validation
+
+```js
+static get propTypes() { 
+    return { 
+        children: PropTypes.any
+    }; 
+}
+```
+
+11. ¿injectContext?
+
+12. ¿tiene sentido poner código después de un throw error?
+
+13. Que es mejor,
+- guardar en Store el json tal cual lo devuelve backend?
+- guardar en Store el json ya mapeado?
+
+14. Cada vez que cambio un valor en context, ¿se re-renderizan todos los componentes afectados?

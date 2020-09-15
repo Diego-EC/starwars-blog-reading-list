@@ -22,3 +22,8 @@
 
 ## Scroll style
 1. https://mdbootstrap.com/docs/jquery/javascript/scroll/
+
+
+## Varios
+"http://placehold.it/500x325"
+pathname: "/single/" + name.replace(" ", "").toLowerCase(),

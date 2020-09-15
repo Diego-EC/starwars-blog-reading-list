@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { HorizontalScrollingItemList } from "../component/horizontal-scrolling-item-list";
-
+import { Context } from "../store/appContext";
 import { Card } from "../component/bootstrap/card";
 
 export const Main = () => {
-	const [characters, setCharacters] = useState([]);
+	const { store, actions } = useContext(Context);
+
+	//const [characters, setCharacters] = useState([]);
 	const [planets, setPlanets] = useState([]);
 	const [vehicles, setVehicles] = useState([]);
 
@@ -14,16 +16,17 @@ export const Main = () => {
 	const VEHICLES_ENDPOINT = "vehicles/";
 
 	useEffect(() => {
-		fetchGetCharacters();
-		fetchGetPlanets();
-		fetchGetVehicles();
+		actions.fetchGetCharacters(SWAPI_ROOT + CHARACTERS_ENDPOINT);
+		//fetchGetCharacters();
+		//fetchGetPlanets();
+		//fetchGetVehicles();
 	}, []);
 
 	function doFetch(endpoint, method) {
 		console.log("doFetch");
 
 		let fetchOptions = {
-			method: method,
+			//method: method,
 			headers: { "Content-Type": "application/json" }
 		};
 
@@ -55,7 +58,7 @@ export const Main = () => {
 					"Hair Color: " + character.hair_color,
 					"Eye Color: " + character.eye_color
 				];
-				return <Card key={index} name={character.name} details={details} />;
+				return <Card key={index} index={index} name={character.name} details={details} />;
 			});
 			setCharacters(jsonMap);
 		}
@@ -88,7 +91,7 @@ export const Main = () => {
 	return (
 		<div className="container">
 			<h1>Main view</h1>
-			<HorizontalScrollingItemList resource={"Characters"} items={characters} />
+			<HorizontalScrollingItemList resource={"Characters"} items={store.characters} />
 			<HorizontalScrollingItemList resource={"Planets"} items={planets} />
 			<HorizontalScrollingItemList resource={"Vehicles"} items={vehicles} />
 		</div>

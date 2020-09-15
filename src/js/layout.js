@@ -7,8 +7,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 //import { Single } from "./views/_single";
 import { Main } from "./views/main";
 import { VehicleDetail } from "./views/vehicle-detail";
-import { PlanetDetail } from "./views/planet-detail";
-import { CharacterDetail } from "./views/character-detail";
+import { ItemDetail } from "./views/item-detail";
+import { CharacterDetail } from "./views/item-detail";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -25,16 +25,8 @@ const Layout = () => {
 			<BrowserRouter basename={basename}>
 				<Navbar />
 				<Switch>
-					<Route exact path="/">
-						<Main />
-					</Route>
-					<Route exact path="/character-detail/:id/:name" component={CharacterDetail} />
-					<Route exact path="/PlanetDetail/:id">
-						<PlanetDetail />
-					</Route>
-					<Route exact path="/VehicleDetail/:id">
-						<VehicleDetail />
-					</Route>
+					<Route exact path="/" component={Main} />
+					<Route exact path="/item-detail/:index:name" component={ItemDetail} />
 					<Route>
 						<h1>Not found!</h1>
 					</Route>

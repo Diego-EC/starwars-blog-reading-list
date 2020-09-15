@@ -8,7 +8,7 @@ export const HorizontalScrollingItemList = props => {
 	};
 
 	//const [items, setItems] = useState([]);
-	console.log("--> HorizontalScrollingItemList");
+	console.log("HorizontalScrollingItemList");
 	return (
 		<div className="container-fluid mt-5">
 			<h2>{props.resource}</h2>
