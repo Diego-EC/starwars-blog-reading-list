@@ -27,3 +27,6 @@
 ## Varios
 "http://placehold.it/500x325"
 pathname: "/single/" + name.replace(" ", "").toLowerCase(),
+https://stackoverflow.com/questions/48156902/how-can-i-draw-red-horizontal-line-in-react/48156940
+
+
