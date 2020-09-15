@@ -2,11 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import { HorizontalScrollingItemList } from "../component/horizontal-scrolling-item-list";
 import { Context } from "../store/appContext";
 import { Card } from "../component/bootstrap/card";
+import { func } from "prop-types";
 
 export const Main = () => {
 	const { store, actions } = useContext(Context);
 
-	//const [characters, setCharacters] = useState([]);
+	const [characters, setCharacters] = useState([]);
 	const [planets, setPlanets] = useState([]);
 	const [vehicles, setVehicles] = useState([]);
 
@@ -15,12 +16,37 @@ export const Main = () => {
 	const PLANETS_ENDPOINT = "planets/";
 	const VEHICLES_ENDPOINT = "vehicles/";
 
+	let lol;
+
 	useEffect(() => {
-		actions.fetchGetCharacters(SWAPI_ROOT + CHARACTERS_ENDPOINT);
+		lol = cargarCharacters();
+		//lol = actions.fetchGetCharacters(SWAPI_ROOT + CHARACTERS_ENDPOINT);
 		//fetchGetCharacters();
 		//fetchGetPlanets();
 		//fetchGetVehicles();
 	}, []);
+	let jsonMap;
+	async function cargarCharacters() {
+		lol = await actions.fetchGetCharacters(SWAPI_ROOT + CHARACTERS_ENDPOINT);
+		console.log("lol");
+		console.log(store.characters.results);
+		if (store.characters.results) {
+			jsonMap = store.characters.results.map(function(character, index) {
+				let details = [
+					"Gender: " + character.gender,
+					"Hair Color: " + character.hair_color,
+					"Eye Color: " + character.eye_color
+				];
+				return <Card key={index} index={index} name={character.name} details={details} />;
+			});
+			setCharacters(jsonMap);
+			//setStore({ characters: json });
+		}
+		console.log("jsonMap");
+
+		console.log(jsonMap);
+		return jsonMap;
+	}
 
 	function doFetch(endpoint, method) {
 		console.log("doFetch");
@@ -91,7 +117,7 @@ export const Main = () => {
 	return (
 		<div className="container">
 			<h1>Main view</h1>
-			<HorizontalScrollingItemList resource={"Characters"} items={store.characters} />
+			<HorizontalScrollingItemList resource={"Characters"} items={characters} />
 			<HorizontalScrollingItemList resource={"Planets"} items={planets} />
 			<HorizontalScrollingItemList resource={"Vehicles"} items={vehicles} />
 		</div>

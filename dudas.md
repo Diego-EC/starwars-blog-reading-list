@@ -90,3 +90,6 @@ static get propTypes() {
 - guardar en Store el json ya mapeado?
 
 14. Cada vez que cambio un valor en context, ¿se re-renderizan todos los componentes afectados?
+
+15. Dos arrays por item 🙅
+

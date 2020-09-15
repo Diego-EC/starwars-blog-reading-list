@@ -11,9 +11,14 @@ export const ItemDetail = () => {
 	console.log("-> index = " + index);
 
 	useEffect(() => {
-		intemDetail = actions.getCharacterFromArray(index);
-		console.log(intemDetail);
+		cargarDetalles();
 	}, []);
+
+	async function cargarDetalles() {
+		intemDetail = actions.getCharacterFromArray(index);
+		console.log("intemDetail");
+		console.log(intemDetail);
+	}
 
 	//console.log(intemDetail);
 

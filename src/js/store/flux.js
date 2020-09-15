@@ -40,24 +40,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 				console.log(json);
 				if (json) {
-					let jsonMap = json.results.map(function(character, index) {
-						let details = [
-							"Gender: " + character.gender,
-							"Hair Color: " + character.hair_color,
-							"Eye Color: " + character.eye_color
-						];
-						return <Card key={index} index={index} name={character.name} details={details} />;
-					});
-					//setCharacters(jsonMap);
-					setStore({ characters: jsonMap });
+					setStore({ characters: json });
 				}
-				//setStore({ characters: jsonMap });
-				const store = getStore();
-				console.log(store.characters);
 			},
 
 			getCharacterFromArray: index => {
-				return getStore().characters[index];
+				return getStore().characters.results[index];
 			}
 		}
 	};
