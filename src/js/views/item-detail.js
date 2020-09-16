@@ -33,22 +33,34 @@ export const ItemDetail = () => {
 					</p>
 				</div>
 			</div>
-			<hr
-				style={{
-					color: "#ff0000",
-					backgroundColor: "#ff0000",
-					height: 0.5,
-					borderColor: "#ff0000"
-				}}
-			/>
+
+			<hr className="bg-danger border border-danger" />
 
 			<div className="d-flex flex-row text-center text-danger">
-				<div className="col-2">{"Birth year \n" + detail.birth_year}</div>
-				<div className="col-2">{detail.eye_color}</div>
-				<div className="col-2">{detail.gender}</div>
-				<div className="col-2">{detail.hair_color}</div>
-				<div className="col-2">{detail.height}</div>
-				<div className="col-2">{detail.mass}</div>
+				<div className="col-2">
+					<p>Birth Year</p>
+					<p>{detail.birth_year}</p>
+				</div>
+				<div className="col-2">
+					<p>Eye Color</p>
+					<p>{detail.eye_color}</p>
+				</div>
+				<div className="col-2">
+					<p>Gender</p>
+					<p>{detail.gender}</p>
+				</div>
+				<div className="col-2">
+					<p>Hair Color</p>
+					<p>{detail.hair_color}</p>
+				</div>
+				<div className="col-2">
+					<p>Height</p>
+					<p>{detail.height}</p>
+				</div>
+				<div className="col-2">
+					<p>Mass</p>
+					<p>{detail.mass}</p>
+				</div>
 			</div>
 		</div>
 	);

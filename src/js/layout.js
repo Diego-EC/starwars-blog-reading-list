@@ -1,14 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-//import ScrollToTop from "./component/_scrollToTop";
 
-//import { Home } from "./views/_home";
-//import { Demo } from "./views/_demo";
-//import { Single } from "./views/_single";
 import { Main } from "./views/main";
-import { VehicleDetail } from "./views/vehicle-detail";
 import { ItemDetail } from "./views/item-detail";
-import { CharacterDetail } from "./views/item-detail";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
