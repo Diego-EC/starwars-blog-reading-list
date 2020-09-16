@@ -69,8 +69,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return getStore().characters.results[index];
 			},
 			getPlanetFromArray: index => {
-				return getStore().planet.results[index];
-			}
+				return getStore().planets.results[index];
+			},
+			getVehicleFromArray: index => {
+				return getStore().vehicles.results[index];
+			},
+
+			addFavorite: () => {},
+			deleteFavorite: () => {}
 		}
 	};
 };

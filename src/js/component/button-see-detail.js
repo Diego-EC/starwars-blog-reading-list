@@ -2,10 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-export const ButtonSeeDetail = props => {
+export function ButtonSeeDetail(props) {
 	ButtonSeeDetail.propTypes = {
 		name: PropTypes.string,
-		index: PropTypes.number
+		index: PropTypes.number,
+		item: PropTypes.string
 	};
 	const BUTTON_LABEL = "Learn more!";
 
@@ -16,4 +17,4 @@ export const ButtonSeeDetail = props => {
 			</Link>
 		</div>
 	);
-};
+}

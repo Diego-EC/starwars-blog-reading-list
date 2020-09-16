@@ -93,3 +93,5 @@ static get propTypes() {
 
 15. Dos arrays por item 🙅
 
+16. Tengo que poner ```const [detail, setDetail] = useState({});``` 
+en ItemDetail

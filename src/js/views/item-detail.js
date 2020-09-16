@@ -7,15 +7,9 @@ export const ItemDetail = () => {
 	const [detail, setDetail] = useState({});
 	const { store, actions } = useContext(Context);
 	let { index, name } = useParams();
-	let intemDetail = {};
 
 	useEffect(() => {
-		/*cargarDetalles();*/
-		intemDetail = actions.getCharacterFromArray(index);
-		console.log("intemDetail");
-		console.log(intemDetail);
-		setDetail(intemDetail);
-		console.log(detail.name);
+		setDetail(actions.getCharacterFromArray(index));
 	}, []);
 
 	return (
