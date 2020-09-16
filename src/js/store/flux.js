@@ -12,40 +12,64 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			fetchGetCharacters: async endpoint => {
-				console.log("doFetch");
+				console.log("fetchGetCharacters");
 
-				let fetchOptions = {
-					method: "GET",
-					headers: { "Content-Type": "application/json" }
-				};
+				let json = await getActions().doFetch(endpoint);
 
-				let json = await fetch(endpoint, fetchOptions)
-					.then(response => {
-						console.log("1");
-						if (response.ok) {
-							console.log("2");
-							return response.json();
-						} else {
-							console.log("3");
-							throw Error(response.statusText);
-						}
-						console.log(response);
-						return response.json();
-					})
-					.catch(error => {
-						console.log("4");
-						alert("oh oh, problema gordo.");
-						throw Error(error);
-						return null;
-					});
 				console.log(json);
 				if (json) {
 					setStore({ characters: json });
 				}
 			},
 
+			fetchGetPlanets: async endpoint => {
+				console.log("fetchGetPlanets");
+
+				let json = await getActions().doFetch(endpoint);
+
+				console.log(json);
+				if (json) {
+					setStore({ planets: json });
+				}
+			},
+			fetchGetVehicles: async endpoint => {
+				console.log("fetchGetVehicles");
+
+				let json = await getActions().doFetch(endpoint);
+
+				console.log(json);
+				if (json) {
+					setStore({ vehicles: json });
+				}
+			},
+			doFetch: endpoint => {
+				console.log("doFetch");
+
+				let fetchOptions = {
+					headers: { "Content-Type": "application/json" }
+				};
+
+				return fetch(endpoint, fetchOptions)
+					.then(response => {
+						if (response.ok) {
+							return response.json();
+						} else {
+							throw Error(response.statusText);
+						}
+						console.log(response);
+						return response.json();
+					})
+					.catch(error => {
+						throw Error(error);
+						return null;
+					});
+			},
+
 			getCharacterFromArray: index => {
 				return getStore().characters.results[index];
+			},
+			getPlanetFromArray: index => {
+				return getStore().planet.results[index];
 			}
 		}
 	};

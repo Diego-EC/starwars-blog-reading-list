@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import starWars800x600 from "../../img/star-wars-800x600.jpg";
 import { Context } from "../store/appContext";
@@ -8,8 +8,6 @@ export const ItemDetail = () => {
 	const { store, actions } = useContext(Context);
 	let { index, name } = useParams();
 	let intemDetail = {};
-	console.log("-> name = " + name);
-	console.log("-> index = " + index);
 
 	useEffect(() => {
 		/*cargarDetalles();*/
@@ -65,7 +63,3 @@ export const ItemDetail = () => {
 		</div>
 	);
 };
-/*
-<div> </div>
-<div> </div>
-*/
