@@ -12,7 +12,7 @@ export function ButtonSeeDetail(props) {
 
 	return (
 		<div>
-			<Link to={"/item-detail/" + props.index + props.name}>
+			<Link to={"/character/" + props.name}>
 				<button className="btn btn-outline-primary">{BUTTON_LABEL}</button>
 			</Link>
 		</div>

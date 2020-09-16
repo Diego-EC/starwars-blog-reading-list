@@ -3,7 +3,13 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import { Navbar } from "./component/navbar";
 import { Main } from "./views/main";
-import { ItemDetail } from "./views/item-detail";
+
+import { Character } from "./views/Character";
+import { Vehicle } from "./views/Vehicle";
+import { Planet } from "./views/Planet";
+
+import { Container } from "./views/Container";
+
 import injectContext from "./store/appContext";
 import { Footer } from "./component/footer";
 
@@ -14,7 +20,9 @@ const Layout = () => {
 				<Navbar />
 				<Switch>
 					<Route exact path="/" component={Main} />
-					<Route exact path="/item-detail/:index:name" component={ItemDetail} />
+
+					<Route exact path="/:type/:name" component={Container} />
+
 					<Route>
 						<h1>Not found!</h1>
 					</Route>

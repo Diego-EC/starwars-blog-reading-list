@@ -18,7 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				console.log(json);
 				if (json) {
-					setStore({ characters: json });
+					setStore({ characters: json.results });
 				}
 			},
 
@@ -64,7 +64,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return null;
 					});
 			},
-
+			getCharacterWithName: name => {
+				let store = getStore();
+				console.log(store);
+				if (store.characters) {
+					return store.characters.find(character => {
+						if (character.name === name) {
+							return true;
+						} else {
+							return false;
+						}
+					});
+				} else {
+					throw Error("Character Not Found");
+				}
+			},
 			getCharacterFromArray: index => {
 				return getStore().characters.results[index];
 			},

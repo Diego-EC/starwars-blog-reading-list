@@ -95,3 +95,11 @@ static get propTypes() {
 
 16. Tengo que poner ```const [detail, setDetail] = useState({});``` 
 en ItemDetail
+
+17. ¿Como controlo el quitar un favorito?
+
+
+/**/
+
+Una vista para cada tipo de item, y un componente para los detalles
+que comparten las tres vistas.

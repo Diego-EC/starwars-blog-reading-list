@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import starWars800x600 from "../../img/star-wars-800x600.jpg";
 import { Context } from "../store/appContext";
 
-export const ItemDetail = () => {
+export const Vehicle = () => {
 	const [detail, setDetail] = useState({});
 	const { store, actions } = useContext(Context);
 	let { index, name } = useParams();

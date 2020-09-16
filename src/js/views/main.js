@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { HorizontalScrollList } from "../component/horizontal-scroll-list";
 import { Context } from "../store/appContext";
 import { Card } from "../component/bootstrap/card";
+import { Planets } from "../component/Planets";
 
 export const Main = () => {
 	const { store, actions } = useContext(Context);
@@ -16,16 +17,16 @@ export const Main = () => {
 	const VEHICLES_ENDPOINT = "vehicles/";
 
 	useEffect(() => {
-		getCharacters();
-		getPlanets();
-		getVehicles();
+		getAndSetCharacters();
+		getAndSetPlanets();
+		getAndSetVehicles();
 	}, []);
 
-	async function getCharacters() {
+	async function getAndSetCharacters() {
 		await actions.fetchGetCharacters(SWAPI_ROOT + CHARACTERS_ENDPOINT);
 
-		if (store.characters.results) {
-			let jsonMap = store.characters.results.map(function(character, index) {
+		if (store.characters) {
+			let jsonMap = store.characters.map(function(character, index) {
 				let details = [
 					"Gender: " + character.gender,
 					"Hair Color: " + character.hair_color,
@@ -37,7 +38,7 @@ export const Main = () => {
 		}
 	}
 
-	async function getPlanets() {
+	async function getAndSetPlanets() {
 		console.log("getPlanets");
 		await actions.fetchGetPlanets(SWAPI_ROOT + PLANETS_ENDPOINT);
 
@@ -50,7 +51,7 @@ export const Main = () => {
 		}
 	}
 
-	async function getVehicles() {
+	async function getAndSetVehicles() {
 		console.log("getVehicles");
 		await actions.fetchGetVehicles(SWAPI_ROOT + VEHICLES_ENDPOINT);
 
@@ -66,7 +67,7 @@ export const Main = () => {
 	return (
 		<div className="container">
 			<HorizontalScrollList listName={"Characters"} items={characters} />
-			<HorizontalScrollList listName={"Planets"} items={planets} />
+			<Planets />
 			<HorizontalScrollList listName={"Vehicles"} items={vehicles} />
 		</div>
 	);
