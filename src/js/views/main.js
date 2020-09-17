@@ -2,7 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { HorizontalScrollList } from "../component/horizontal-scroll-list";
 import { Context } from "../store/appContext";
 import { Card } from "../component/bootstrap/card";
-import { Planets } from "../component/Planets";
+import { Planets } from "../component/planets";
+import { Characters } from "../component/characters";
 
 export const Main = () => {
 	const { store, actions } = useContext(Context);
@@ -17,8 +18,8 @@ export const Main = () => {
 	const VEHICLES_ENDPOINT = "vehicles/";
 
 	useEffect(() => {
-		getAndSetCharacters();
-		getAndSetPlanets();
+		//getAndSetCharacters();
+		//getAndSetPlanets();
 		getAndSetVehicles();
 	}, []);
 
@@ -66,7 +67,7 @@ export const Main = () => {
 
 	return (
 		<div className="container">
-			{/*<HorizontalScrollList listName={"Characters"} items={characters} />*/}
+			<Characters />
 			<Planets />
 			{/*<HorizontalScrollList listName={"Vehicles"} items={vehicles} />*/}
 		</div>

@@ -4,11 +4,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Navbar } from "./component/navbar";
 import { Main } from "./views/main";
 
-import { Character } from "./views/Character";
-import { Vehicle } from "./views/Vehicle";
-import { Planet } from "./views/Planet";
-
-import { Container } from "./views/Container";
+import { Character } from "./views/character";
+import { Planet } from "./views/planet";
+import { Vehicle } from "./views/vehicle";
 
 import injectContext from "./store/appContext";
 import { Footer } from "./component/footer";
@@ -22,7 +20,8 @@ const Layout = () => {
 					<Route exact path="/" component={Main} />
 
 					<Route exact path="/character/:name" component={Character} />
-					<Route exact path="/:type/:name" component={Container} />
+					<Route exact path="/planet/:name" component={Vehicle} />
+					<Route exact path="/vehicle/:name" component={Vehicle} />
 
 					<Route>
 						<h1>Not found!</h1>

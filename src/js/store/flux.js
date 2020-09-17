@@ -4,7 +4,9 @@ import { Card } from "../component/bootstrap/card";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const SWAPI_ROOT = "https://swapi.dev/api/";
+	const CHARACTERS_ENDPOINT = "people/";
 	const PLANETS_ENDPOINT = "planets/";
+	const VEHICLES_ENDPOINT = "vehicles/";
 
 	return {
 		store: {
@@ -17,11 +19,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			fetchGetCharacters: async endpoint => {
 				console.log("fetchGetCharacters");
 
-				let json = await getActions().doFetch(endpoint);
+				let json = await getActions().doFetch(SWAPI_ROOT + CHARACTERS_ENDPOINT);
 
 				console.log(json);
 				if (json) {
-					setStore({ characters: json.results });
+					setStore({ characters: json });
 				}
 			},
 
@@ -72,7 +74,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let store = getStore();
 				console.log(store);
 				if (store.characters) {
-					return store.characters.find(character => {
+					return store.characters.results.find(character => {
 						if (character.name === name) {
 							return true;
 						} else {

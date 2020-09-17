@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { HorizontalScrollList } from "../component/horizontal-scroll-list";
+import { HorizontalScrollList } from "./horizontal-scroll-list";
 import { Context } from "../store/appContext";
 
 export const Planets = () => {
