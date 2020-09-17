@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 import { Card } from "../component/bootstrap/card";
 
 const getState = ({ getStore, getActions, setStore }) => {
+	const SWAPI_ROOT = "https://swapi.dev/api/";
+	const PLANETS_ENDPOINT = "planets/";
+
 	return {
 		store: {
 			characters: [],
@@ -22,10 +25,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			fetchGetPlanets: async endpoint => {
+			fetchGetPlanets: async () => {
 				console.log("fetchGetPlanets");
 
-				let json = await getActions().doFetch(endpoint);
+				let json = await getActions().doFetch(SWAPI_ROOT + PLANETS_ENDPOINT);
 
 				console.log(json);
 				if (json) {
