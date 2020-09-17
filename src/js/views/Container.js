@@ -15,6 +15,10 @@ export const Container = () => {
 			{
 				label: "Hair Color",
 				value: object.hair_color
+			},
+			{
+				label: "Gender",
+				value: object.gender
 			}
 		];
 	}

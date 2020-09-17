@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { HorizontalScrollList } from "../component/horizontal-scroll-list";
 import { Context } from "../store/appContext";
-import { Card } from "../component/bootstrap/card";
 
 export const Planets = () => {
 	const { store, actions } = useContext(Context);
@@ -17,6 +16,12 @@ export const Planets = () => {
 
 	async function init() {
 		let planets = await getPlanets(setPlanets);
+
+		console.log("PLANETS");
+		console.log("PLANETS");
+		console.log("PLANETS");
+		console.log(planets);
+
 		setPlanets(planets);
 	}
 
@@ -26,13 +31,31 @@ export const Planets = () => {
 		let jsonMap = [];
 		if (store.planets.results) {
 			jsonMap = store.planets.results.map(function(planet, index) {
+				//let details = ["Population: " + planet.population, "Terrain: " + planet.terrain];
+				//return <Card key={index} name={planet.name} details={details} />;
+				/*let details = [
+					{ label: "Population: ", value: planet.population },
+					{ label: "Terrain: ", value: planet.terrain }
+                ];*/
+				//return details;
+
+				let name = planet.name;
 				let details = ["Population: " + planet.population, "Terrain: " + planet.terrain];
-				return <Card key={index} name={planet.name} details={details} />;
+				//return [name, details];
+
+				return {
+					name: name,
+					details: details
+				};
 			});
 		}
 		console.log(jsonMap);
 		return jsonMap;
 	}
 
+	console.log("-------------------------");
+	console.log("-------------------------");
+	console.log("-------------------------");
+	console.log(planets);
 	return <HorizontalScrollList listName={"Planets"} items={planets} />;
 };

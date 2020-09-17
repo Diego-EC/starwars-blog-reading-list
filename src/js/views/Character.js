@@ -13,6 +13,10 @@ export const Character = () => {
 	function parseDetailsToItemDetails(object) {
 		return [
 			{
+				label: "Gender",
+				value: object.gender
+			},
+			{
 				label: "Hair Color",
 				value: object.hair_color
 			}

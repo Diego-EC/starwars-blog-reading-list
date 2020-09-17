@@ -29,8 +29,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				console.log(json);
 				if (json) {
-					console.log("---> json");
-					console.log(json);
 					setStore({ planets: json });
 					//setStore({ planets: json.results });
 				}

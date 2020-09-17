@@ -21,6 +21,7 @@ const Layout = () => {
 				<Switch>
 					<Route exact path="/" component={Main} />
 
+					<Route exact path="/character/:name" component={Character} />
 					<Route exact path="/:type/:name" component={Container} />
 
 					<Route>

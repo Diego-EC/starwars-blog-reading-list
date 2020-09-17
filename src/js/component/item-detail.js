@@ -6,7 +6,8 @@ import { PropTypes } from "prop-types";
 
 export const ItemDetail = props => {
 	const { details, title, description } = props;
-
+	console.log("--> details");
+	console.log(details);
 	const detailsHtml = details.map((detail, index) => {
 		return (
 			<div key={index} className="col-2">

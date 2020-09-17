@@ -66,9 +66,9 @@ export const Main = () => {
 
 	return (
 		<div className="container">
-			<HorizontalScrollList listName={"Characters"} items={characters} />
+			{/*<HorizontalScrollList listName={"Characters"} items={characters} />*/}
 			<Planets />
-			<HorizontalScrollList listName={"Vehicles"} items={vehicles} />
+			{/*<HorizontalScrollList listName={"Vehicles"} items={vehicles} />*/}
 		</div>
 	);
 };
