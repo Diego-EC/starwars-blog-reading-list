@@ -11,21 +11,27 @@ export const Planets = () => {
 	const SWAPI_ROOT = "https://swapi.dev/api/";
 	const PLANETS_ENDPOINT = "planets/";
 
-	useEffect(async () => {
-		let planets = await getPlanets(setPlanets);
-		setPlanets(planets);
+	useEffect(() => {
+		init();
 	}, []);
 
-	async function getPlanets(callback) {
-		console.log("getPlanets");
-		await actions.fetchGetPlanets(SWAPI_ROOT + PLANETS_ENDPOINT);
+	async function init() {
+		let planets = await getPlanets(setPlanets);
+		setPlanets(planets);
+	}
 
+	async function getPlanets(callback) {
+		await actions.fetchGetPlanets(SWAPI_ROOT + PLANETS_ENDPOINT);
+		console.log(store.planets.results);
+		let jsonMap = [];
 		if (store.planets.results) {
-			let jsonMap = store.planets.results.map(function(planet, index) {
+			jsonMap = store.planets.results.map(function(planet, index) {
 				let details = ["Population: " + planet.population, "Terrain: " + planet.terrain];
 				return <Card key={index} name={planet.name} details={details} />;
 			});
 		}
+		console.log(jsonMap);
+		return jsonMap;
 	}
 
 	return <HorizontalScrollList listName={"Planets"} items={planets} />;
