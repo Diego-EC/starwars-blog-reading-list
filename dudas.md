@@ -103,3 +103,9 @@ en ItemDetail
 
 Una vista para cada tipo de item, y un componente para los detalles
 que comparten las tres vistas.
+
+
+
+18. TIE/LN starfighter
+¿cómo trato los nombres que tienen una '/'? Afecta a la URL.
+	//let name = props.name.replace("/", "-");

@@ -24,8 +24,11 @@ export const Characters = () => {
 		let jsonMap = [];
 		if (store.characters.results) {
 			jsonMap = store.characters.results.map(function(character, index) {
-				let details = ["Population: " + character.name, "Terrain: " + character.name];
-
+				let details = [
+					"Gender: " + character.gender,
+					"Hair Color: " + character.hair_color,
+					"Eye Color: " + character.eye_color
+				];
 				return {
 					name: character.name,
 					details: details
@@ -35,5 +38,5 @@ export const Characters = () => {
 		return jsonMap;
 	}
 
-	return <HorizontalScrollList listName={"Characters"} items={characters} />;
+	return <HorizontalScrollList listName={"Characters"} items={characters} link={"character"} />;
 };

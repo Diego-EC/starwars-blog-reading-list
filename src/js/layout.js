@@ -20,7 +20,7 @@ const Layout = () => {
 					<Route exact path="/" component={Main} />
 
 					<Route exact path="/character/:name" component={Character} />
-					<Route exact path="/planet/:name" component={Vehicle} />
+					<Route exact path="/planet/:name" component={Planet} />
 					<Route exact path="/vehicle/:name" component={Vehicle} />
 
 					<Route>

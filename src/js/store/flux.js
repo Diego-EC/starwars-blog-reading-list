@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { Card } from "../component/bootstrap/card";
+import { Vehicle } from "../views/vehicle";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	const SWAPI_ROOT = "https://swapi.dev/api/";
@@ -38,10 +39,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					//setStore({ planets: json.results });
 				}
 			},
-			fetchGetVehicles: async endpoint => {
+			fetchGetVehicles: async () => {
 				console.log("fetchGetVehicles");
 
-				let json = await getActions().doFetch(endpoint);
+				let json = await getActions().doFetch(SWAPI_ROOT + VEHICLES_ENDPOINT);
 
 				console.log(json);
 				if (json) {
@@ -70,7 +71,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return null;
 					});
 			},
-			getCharacterWithName: name => {
+			getCharacterByName: name => {
 				let store = getStore();
 				console.log(store);
 				if (store.characters) {
@@ -85,14 +86,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 					throw Error("Character Not Found");
 				}
 			},
-			getCharacterFromArray: index => {
-				return getStore().characters.results[index];
+			getPlanetByName: name => {
+				let store = getStore();
+				console.log(store);
+				if (store.planets) {
+					return store.planets.results.find(planet => {
+						if (planet.name === name) {
+							return true;
+						} else {
+							return false;
+						}
+					});
+				} else {
+					throw Error("Planet Not Found");
+				}
 			},
-			getPlanetFromArray: index => {
-				return getStore().planets.results[index];
-			},
-			getVehicleFromArray: index => {
-				return getStore().vehicles.results[index];
+			getVehicleByName: name => {
+				let store = getStore();
+				console.log(store);
+				if (store.vehicles) {
+					return store.vehicles.results.find(vehicle => {
+						if (vehicle.name === name) {
+							return true;
+						} else {
+							return false;
+						}
+					});
+				} else {
+					throw Error("Vehicle Not Found");
+				}
 			},
 
 			addFavorite: () => {},

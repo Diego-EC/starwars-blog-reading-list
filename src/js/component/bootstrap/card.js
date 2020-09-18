@@ -9,7 +9,8 @@ export const Card = props => {
 	Card.propTypes = {
 		index: PropTypes.number,
 		name: PropTypes.string,
-		details: PropTypes.array
+		details: PropTypes.array,
+		link: PropTypes.string
 	};
 
 	let mapDetails = props.details.map((detail, index) => {
@@ -29,7 +30,7 @@ export const Card = props => {
 					{mapDetails}
 					<div className="mt-auto">
 						<div className="mt-3 d-flex justify-content-between ">
-							<ButtonSeeDetail index={props.index} name={props.name} />
+							<ButtonSeeDetail index={props.index} name={props.name} link={props.link} />
 							<ButtonFavorite />
 						</div>
 					</div>

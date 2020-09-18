@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
 import starWars800x600 from "../../img/star-wars-800x600.jpg";
 import { Context } from "../store/appContext";
 import { PropTypes } from "prop-types";
 
 export const ItemDetail = props => {
-	const { details, title, description } = props;
-	console.log("--> details");
-	console.log(details);
+	ItemDetail.propTypes = {
+		title: PropTypes.string,
+		description: PropTypes.string,
+		details: PropTypes.array
+	};
+	const { title, description, details } = props;
+
 	const detailsHtml = details.map((detail, index) => {
 		return (
 			<div key={index} className="col-2">
@@ -32,9 +35,4 @@ export const ItemDetail = props => {
 			<div className="d-flex flex-row text-center text-danger">{detailsHtml}</div>
 		</div>
 	);
-};
-ItemDetail.propTypes = {
-	details: PropTypes.array,
-	title: PropTypes.string,
-	description: PropTypes.string
 };

@@ -35,5 +35,5 @@ export const Planets = () => {
 		return jsonMap;
 	}
 
-	return <HorizontalScrollList listName={"Planets"} items={planets} />;
+	return <HorizontalScrollList listName={"Planets"} items={planets} link={"planet"} />;
 };

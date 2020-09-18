@@ -5,11 +5,12 @@ import { Card } from "../component/bootstrap/card";
 export const HorizontalScrollList = props => {
 	HorizontalScrollList.propTypes = {
 		listName: PropTypes.string,
-		items: PropTypes.array
+		items: PropTypes.array,
+		link: PropTypes.string
 	};
 
 	const detailsHtml = props.items.map((item, index) => {
-		return <Card key={index} name={item.name} details={item.details} />;
+		return <Card key={index} name={item.name} details={item.details} link={props.link} />;
 	});
 
 	return (
