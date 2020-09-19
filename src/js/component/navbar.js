@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Favorites } from "./favorites";
 
 export const Navbar = () => {
+	console.log("Navbar");
 	return (
 		<nav className="navbar navbar-light bg-light mb-3">
 			<div className="container">
@@ -9,7 +11,7 @@ export const Navbar = () => {
 					<span className="navbar-brand mb-0 h1">Starwars Database</span>
 				</Link>
 				<div className="ml-auto">
-					<button className="btn btn-primary">Favorites</button>
+					<Favorites />
 				</div>
 			</div>
 		</nav>

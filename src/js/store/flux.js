@@ -11,47 +11,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 	return {
 		store: {
-			characters: [],
-			planets: [],
-			vehicles: [],
+			charactersResponseJSON: {},
+			planetsResponseJSON: {},
+			vehiclesResponseJSON: {},
 			favorites: []
 		},
 		actions: {
 			fetchGetCharacters: async endpoint => {
-				console.log("fetchGetCharacters");
-
 				let json = await getActions().doFetch(SWAPI_ROOT + CHARACTERS_ENDPOINT);
 
-				console.log(json);
 				if (json) {
-					setStore({ characters: json });
+					setStore({ charactersResponseJSON: json });
 				}
 			},
 
 			fetchGetPlanets: async () => {
-				console.log("fetchGetPlanets");
-
 				let json = await getActions().doFetch(SWAPI_ROOT + PLANETS_ENDPOINT);
 
-				console.log(json);
 				if (json) {
-					setStore({ planets: json });
+					setStore({ planetsResponseJSON: json });
 					//setStore({ planets: json.results });
 				}
 			},
 			fetchGetVehicles: async () => {
-				console.log("fetchGetVehicles");
-
 				let json = await getActions().doFetch(SWAPI_ROOT + VEHICLES_ENDPOINT);
 
-				console.log(json);
 				if (json) {
-					setStore({ vehicles: json });
+					setStore({ vehiclesResponseJSON: json });
 				}
 			},
 			doFetch: endpoint => {
-				console.log("doFetch");
-
 				let fetchOptions = {
 					headers: { "Content-Type": "application/json" }
 				};
@@ -63,7 +52,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						} else {
 							throw Error(response.statusText);
 						}
-						console.log(response);
 						return response.json();
 					})
 					.catch(error => {
@@ -73,9 +61,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getCharacterByName: name => {
 				let store = getStore();
-				console.log(store);
-				if (store.characters) {
-					return store.characters.results.find(character => {
+				if (store.charactersResponseJSON) {
+					return store.charactersResponseJSON.results.find(character => {
 						if (character.name === name) {
 							return true;
 						} else {
@@ -88,9 +75,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getPlanetByName: name => {
 				let store = getStore();
-				console.log(store);
-				if (store.planets) {
-					return store.planets.results.find(planet => {
+				if (store.planetsResponseJSON) {
+					return store.planetsResponseJSON.results.find(planet => {
 						if (planet.name === name) {
 							return true;
 						} else {
@@ -103,9 +89,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getVehicleByName: name => {
 				let store = getStore();
-				console.log(store);
-				if (store.vehicles) {
-					return store.vehicles.results.find(vehicle => {
+				if (store.vehiclesResponseJSON) {
+					return store.vehiclesResponseJSON.results.find(vehicle => {
 						if (vehicle.name === name) {
 							return true;
 						} else {
@@ -116,9 +101,41 @@ const getState = ({ getStore, getActions, setStore }) => {
 					throw Error("Vehicle Not Found");
 				}
 			},
+			/*
+			addCharacterFavorite: name => {
+				if (getStore().charactersResponseJSON) {
+					return getStore().charactersResponseJSON.results.find(character => {
+						if (character.name === name) {
+							const favorite = { name: name, type: "character" };
+							setStore({ favorites: [...getStore().favorites, favorite] });
+							return true;
+						} else {
+							return false;
+						}
+					});
+				} else {
+					throw Error("Character not found");
+				}
+            },
+            */
+			isFavorite: name => {
+				let store = getStore();
+				if (store.favorites) {
+					return store.favorites.includes(name);
+				} else {
+					return false;
+				}
+			},
+			addFavorite: name => {
+				setStore({ favorites: [...getStore().favorites, name] });
+			},
+			deleteFavorite: name => {
+				let index = getStore().favorites.indexOf(name);
 
-			addFavorite: () => {},
-			deleteFavorite: () => {}
+				if (index !== -1) {
+					getStore().favorites.splice(index, 1);
+				}
+			}
 		}
 	};
 };

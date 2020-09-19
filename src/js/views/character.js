@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import starWars800x600 from "../../img/star-wars-800x600.jpg";
 import { Context } from "../store/appContext";
-import { ItemDetail } from "../component/item-detail";
+import { ItemDetails } from "../component/item-details";
 
 export const Character = () => {
 	const [character, setCharacter] = useState({});
@@ -56,5 +56,5 @@ export const Character = () => {
 		" Nam malesuada felis ac lectus volutpat varius. Suspendisse quis quam semper," +
 		" hendrerit mauris nec, eleifend.";
 
-	return <ItemDetail title={character.name} description={description} details={itemDetails} />;
+	return <ItemDetails title={character.name} description={description} details={itemDetails} />;
 };

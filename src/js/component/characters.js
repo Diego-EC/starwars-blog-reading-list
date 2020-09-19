@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { HorizontalScrollList } from "./horizontal-scroll-list";
 import { Context } from "../store/appContext";
-
+import { Favorites } from "./favorites";
 export const Characters = () => {
 	const { store, actions } = useContext(Context);
 	const [characters, setCharacters] = useState([]);
@@ -22,8 +22,8 @@ export const Characters = () => {
 
 	function mapCharacters() {
 		let jsonMap = [];
-		if (store.characters.results) {
-			jsonMap = store.characters.results.map(function(character, index) {
+		if (store.charactersResponseJSON.results) {
+			jsonMap = store.charactersResponseJSON.results.map(function(character, index) {
 				let details = [
 					"Gender: " + character.gender,
 					"Hair Color: " + character.hair_color,
@@ -31,7 +31,8 @@ export const Characters = () => {
 				];
 				return {
 					name: character.name,
-					details: details
+					details: details,
+					isFavorite: false
 				};
 			});
 		}

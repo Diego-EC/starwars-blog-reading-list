@@ -10,7 +10,9 @@ export const HorizontalScrollList = props => {
 	};
 
 	const detailsHtml = props.items.map((item, index) => {
-		return <Card key={index} name={item.name} details={item.details} link={props.link} />;
+		return (
+			<Card key={index} name={item.name} details={item.details} link={props.link} isFavorite={item.isFavorite} />
+		);
 	});
 
 	return (

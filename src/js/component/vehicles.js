@@ -22,8 +22,8 @@ export const Vehicles = () => {
 
 	function mapVehicles() {
 		let jsonMap = [];
-		if (store.vehicles.results) {
-			jsonMap = store.vehicles.results.map(function(vehicle, index) {
+		if (store.vehiclesResponseJSON.results) {
+			jsonMap = store.vehiclesResponseJSON.results.map(function(vehicle, index) {
 				let details = ["Manufacturer: " + vehicle.manufacturer, "Model: " + vehicle.model];
 				return {
 					name: vehicle.name,

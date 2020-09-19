@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
 import starWars800x600 from "../../img/star-wars-800x600.jpg";
 import { Context } from "../store/appContext";
 import { PropTypes } from "prop-types";
 
-export const CharacterDetails = props => {
-	const { character } = props;
+export const ItemDetails = props => {
+	ItemDetails.propTypes = {
+		title: PropTypes.string,
+		description: PropTypes.string,
+		details: PropTypes.array
+	};
+	const { title, description, details } = props;
 
 	const detailsHtml = details.map((detail, index) => {
 		return (
@@ -31,10 +35,4 @@ export const CharacterDetails = props => {
 			<div className="d-flex flex-row text-center text-danger">{detailsHtml}</div>
 		</div>
 	);
-};
-
-ItemDetail.propTypes = {
-	details: PropTypes.Array,
-	title: PropTypes.String,
-	description: PropTypes.String
 };

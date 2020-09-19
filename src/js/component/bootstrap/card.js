@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { ButtonSeeDetail } from "../button-see-detail";
-import { ButtonFavorite } from "../button-favorite";
+import { ButtonToggleFavorite } from "../button-toggle-favorite";
 import starWars400x200 from "../../../img/star-wars-400x200.jpg";
 import "../../../styles/index.scss";
 
@@ -10,7 +10,8 @@ export const Card = props => {
 		index: PropTypes.number,
 		name: PropTypes.string,
 		details: PropTypes.array,
-		link: PropTypes.string
+		link: PropTypes.string,
+		isFavorite: PropTypes.bool
 	};
 
 	let mapDetails = props.details.map((detail, index) => {
@@ -31,7 +32,11 @@ export const Card = props => {
 					<div className="mt-auto">
 						<div className="mt-3 d-flex justify-content-between ">
 							<ButtonSeeDetail index={props.index} name={props.name} link={props.link} />
-							<ButtonFavorite />
+							<ButtonToggleFavorite
+								itemType={props.link}
+								itemName={props.name}
+								isFavorite={props.isFavorite}
+							/>
 						</div>
 					</div>
 				</div>

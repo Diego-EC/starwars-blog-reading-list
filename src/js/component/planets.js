@@ -22,8 +22,8 @@ export const Planets = () => {
 
 	function mapPlanets() {
 		let jsonMap = [];
-		if (store.planets.results) {
-			jsonMap = store.planets.results.map(function(planet, index) {
+		if (store.planetsResponseJSON.results) {
+			jsonMap = store.planetsResponseJSON.results.map(function(planet, index) {
 				let details = ["Population: " + planet.population, "Terrain: " + planet.terrain];
 
 				return {
