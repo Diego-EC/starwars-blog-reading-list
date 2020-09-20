@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Favorites } from "./favorites";
 
 export const Navbar = () => {
-	console.log("Navbar");
 	return (
 		<nav className="navbar navbar-light bg-light mb-3">
 			<div className="container">

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { HorizontalScrollList } from "./horizontal-scroll-list";
 import { Context } from "../store/appContext";
 import { Favorites } from "./favorites";
+
 export const Characters = () => {
 	const { store, actions } = useContext(Context);
 	const [characters, setCharacters] = useState([]);
