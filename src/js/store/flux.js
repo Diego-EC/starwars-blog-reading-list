@@ -101,7 +101,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					throw Error("Vehicle Not Found");
 				}
 			},
-			/*
+
 			addCharacterFavorite: name => {
 				if (getStore().charactersResponseJSON) {
 					return getStore().charactersResponseJSON.results.find(character => {
@@ -116,8 +116,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} else {
 					throw Error("Character not found");
 				}
-            },
-            */
+			},
+
 			isFavorite: name => {
 				let store = getStore();
 				if (store.favorites) {
@@ -130,11 +130,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ favorites: [...getStore().favorites, name] });
 			},
 			deleteFavorite: name => {
-				let index = getStore().favorites.indexOf(name);
-
+				let store = getStore();
+				let index = store.favorites.indexOf(name);
+				/*
 				if (index !== -1) {
 					getStore().favorites.splice(index, 1);
-				}
+                }
+                */
+				const arr = store.favorites.filter(function(item) {
+					return item !== name;
+				});
+				setStore({ favorites: arr });
+				console.log("getStore().favorites");
+				console.log(store.favorites);
 			}
 		}
 	};
