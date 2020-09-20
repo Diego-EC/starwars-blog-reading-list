@@ -3,16 +3,12 @@ import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 
 export const Favorite = props => {
-	console.log("Favorite");
-
 	Favorite.propTypes = {
 		name: PropTypes.string
 	};
-
 	const { store, actions } = useContext(Context);
 
 	function deleteFavorite() {
-		console.log("deleteFavorite");
 		actions.deleteFavorite(props.name);
 	}
 

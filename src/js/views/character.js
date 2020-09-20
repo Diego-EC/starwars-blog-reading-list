@@ -10,6 +10,8 @@ export const Character = () => {
 	let { name } = useParams();
 
 	useEffect(() => {
+		name = decodeURIComponent(name);
+
 		let character = actions.getCharacterByName(name);
 		if (character) {
 			setCharacter(character);

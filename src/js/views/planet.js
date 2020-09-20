@@ -10,6 +10,8 @@ export const Planet = () => {
 	let { name } = useParams();
 
 	useEffect(() => {
+		name = decodeURIComponent(name);
+
 		let planet = actions.getPlanetByName(name);
 		if (planet) {
 			setPlanet(planet);

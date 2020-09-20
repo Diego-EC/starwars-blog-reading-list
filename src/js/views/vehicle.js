@@ -10,7 +10,8 @@ export const Vehicle = () => {
 	let { name } = useParams();
 
 	useEffect(() => {
-		console.log("-> vehicle name: " + name);
+		name = decodeURIComponent(name);
+
 		let vehicle = actions.getVehicleByName(name);
 		if (vehicle) {
 			setVehicle(vehicle);

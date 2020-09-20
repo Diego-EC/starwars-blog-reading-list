@@ -11,9 +11,11 @@ export function ButtonSeeDetail(props) {
 	};
 	const BUTTON_LABEL = "Learn more!";
 
+	let encodedName = encodeURIComponent(props.name);
+
 	return (
 		<div>
-			<Link to={"/" + props.link + "/" + props.name}>
+			<Link to={"/" + props.link + "/" + encodedName}>
 				<button className="btn btn-outline-primary">{BUTTON_LABEL}</button>
 			</Link>
 		</div>
