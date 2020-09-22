@@ -17,11 +17,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			favorites: []
 		},
 		actions: {
-			fetchGetCharacters: async endpoint => {
+			fetchGetCharacters: async () => {
 				let json = await getActions().doFetch(SWAPI_ROOT + CHARACTERS_ENDPOINT);
 
 				if (json) {
-					setStore({ charactersResponseJSON: json });
+					getActions().setCharacters(json);
 				}
 			},
 
@@ -29,15 +29,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let json = await getActions().doFetch(SWAPI_ROOT + PLANETS_ENDPOINT);
 
 				if (json) {
-					setStore({ planetsResponseJSON: json });
+					getActions().setPlanets(json);
 				}
 			},
 			fetchGetVehicles: async () => {
 				let json = await getActions().doFetch(SWAPI_ROOT + VEHICLES_ENDPOINT);
 
 				if (json) {
-					setStore({ vehiclesResponseJSON: json });
+					getActions().setVehicles(json);
 				}
+			},
+			setCharacters: json => {
+				setStore({ charactersResponseJSON: json });
+			},
+			setPlanets: json => {
+				setStore({ planetsResponseJSON: json });
+			},
+			setVehicles: json => {
+				setStore({ vehiclesResponseJSON: json });
 			},
 			doFetch: endpoint => {
 				let fetchOptions = {
@@ -60,6 +69,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getCharacterByName: name => {
 				let store = getStore();
+
 				if (store.charactersResponseJSON) {
 					return store.charactersResponseJSON.results.find(character => {
 						if (character.name === name) {
@@ -74,6 +84,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getPlanetByName: name => {
 				let store = getStore();
+
 				if (store.planetsResponseJSON) {
 					return store.planetsResponseJSON.results.find(planet => {
 						if (planet.name === name) {
@@ -100,23 +111,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					throw Error("Vehicle Not Found");
 				}
 			},
-			/*
-			addCharacterFavorite: name => {
-				if (getStore().charactersResponseJSON) {
-					return getStore().charactersResponseJSON.results.find(character => {
-						if (character.name === name) {
-							const favorite = { name: name, type: "character" };
-							setStore({ favorites: [...getStore().favorites, favorite] });
-							return true;
-						} else {
-							return false;
-						}
-					});
-				} else {
-					throw Error("Character not found");
-				}
-			},
-*/
 			isFavorite: name => {
 				let store = getStore();
 				if (store.favorites) {

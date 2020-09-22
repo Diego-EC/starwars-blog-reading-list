@@ -3,23 +3,35 @@ import { useParams } from "react-router-dom";
 import starWars800x600 from "../../img/star-wars-800x600.jpg";
 import { Context } from "../store/appContext";
 import { ItemDetails } from "../component/item-details";
+import { ifArrayExistsAndHasData } from "../common/common.js";
 
 export const Character = () => {
 	const [character, setCharacter] = useState({});
-	const { actions } = useContext(Context);
+	const { store, actions } = useContext(Context);
 	let { name } = useParams();
 
 	useEffect(() => {
 		name = decodeURIComponent(name);
+		checkIfWeHaveData();
+		getCharacterByName(name);
+	}, []);
 
+	function checkIfWeHaveData() {
+		if (ifArrayExistsAndHasData(store.charactersResponseJSON)) {
+			let storedCharacters = JSON.parse(localStorage.getItem("characters"));
+			actions.setCharacters(storedCharacters);
+		}
+	}
+
+	function getCharacterByName() {
 		let character = actions.getCharacterByName(name);
 		if (character) {
 			setCharacter(character);
 		} else {
-			//TODO
-			alert(character);
+			alert("Character not found");
+			throw Error("Character not found");
 		}
-	}, []);
+	}
 
 	function parseDetailsToItemDetails(object) {
 		return [

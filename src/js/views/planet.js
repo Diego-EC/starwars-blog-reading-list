@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import starWars800x600 from "../../img/star-wars-800x600.jpg";
 import { Context } from "../store/appContext";
 import { ItemDetails } from "../component/item-details";
+import { ifArrayExistsAndHasData } from "../common/common.js";
 
 export const Planet = () => {
 	const [planet, setPlanet] = useState({});
@@ -11,16 +12,26 @@ export const Planet = () => {
 
 	useEffect(() => {
 		name = decodeURIComponent(name);
+		checkIfWeHaveData();
+		getPlanetByName(name);
+	}, []);
 
+	function checkIfWeHaveData() {
+		if (ifArrayExistsAndHasData(store.planetsResponseJSON)) {
+			let storedPlanets = JSON.parse(localStorage.getItem("planets"));
+			actions.setPlanets(storedPlanets);
+		}
+	}
+
+	function getPlanetByName(name) {
 		let planet = actions.getPlanetByName(name);
 		if (planet) {
 			setPlanet(planet);
 		} else {
-			//TODO
-			alert(planet);
+			alert("Planet not found");
+			throw Error("Planet not found");
 		}
-	}, []);
-
+	}
 	function parseDetailsToItemDetails(object) {
 		return [
 			{

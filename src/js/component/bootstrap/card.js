@@ -10,8 +10,7 @@ export const Card = props => {
 		index: PropTypes.number,
 		name: PropTypes.string,
 		details: PropTypes.array,
-		link: PropTypes.string,
-		isFavorite: PropTypes.bool
+		link: PropTypes.string
 	};
 
 	let mapDetails = props.details.map((detail, index) => {
@@ -32,11 +31,7 @@ export const Card = props => {
 					<div className="mt-auto">
 						<div className="mt-3 d-flex justify-content-between ">
 							<ButtonSeeDetail index={props.index} name={props.name} link={props.link} />
-							<ButtonToggleFavorite
-								itemType={props.link}
-								itemName={props.name}
-								isFavorite={props.isFavorite}
-							/>
+							<ButtonToggleFavorite itemName={props.name} />
 						</div>
 					</div>
 				</div>

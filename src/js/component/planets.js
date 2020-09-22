@@ -12,6 +12,7 @@ export const Planets = () => {
 
 	async function planetsProcess() {
 		await getPlanets();
+		localStorage.setItem("planets", JSON.stringify(store.planetsResponseJSON));
 		const planetsMap = mapPlanets();
 		setPlanets(planetsMap);
 	}

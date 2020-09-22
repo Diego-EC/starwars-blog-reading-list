@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { HorizontalScrollList } from "./horizontal-scroll-list";
 import { Context } from "../store/appContext";
-import { Favorites } from "./favorites";
 
 export const Characters = () => {
 	const { store, actions } = useContext(Context);
@@ -13,6 +12,7 @@ export const Characters = () => {
 
 	async function charactersProcess() {
 		await getCharacters();
+		localStorage.setItem("characters", JSON.stringify(store.charactersResponseJSON));
 		const charactersMap = mapCharacters();
 		setCharacters(charactersMap);
 	}

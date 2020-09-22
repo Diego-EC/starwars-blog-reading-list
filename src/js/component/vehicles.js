@@ -12,6 +12,7 @@ export const Vehicles = () => {
 
 	async function planetsProcess() {
 		await getVehicles();
+		localStorage.setItem("vehicles", JSON.stringify(store.vehiclesResponseJSON));
 		const vehiclesMap = mapVehicles();
 		setVehicles(vehiclesMap);
 	}

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import starWars800x600 from "../../img/star-wars-800x600.jpg";
 import { Context } from "../store/appContext";
 import { ItemDetails } from "../component/item-details";
+import { ifArrayExistsAndHasData } from "../common/common.js";
 
 export const Vehicle = () => {
 	const [vehicle, setVehicle] = useState({});
@@ -11,15 +12,26 @@ export const Vehicle = () => {
 
 	useEffect(() => {
 		name = decodeURIComponent(name);
+		checkIfWeHaveData();
+		getVehicleByName(name);
+	}, []);
 
+	function checkIfWeHaveData() {
+		if (ifArrayExistsAndHasData(store.vehiclesResponseJSON)) {
+			let storedVehicles = JSON.parse(localStorage.getItem("vehicles"));
+			actions.setVehicles(storedVehicles);
+		}
+	}
+
+	function getVehicleByName(name) {
 		let vehicle = actions.getVehicleByName(name);
 		if (vehicle) {
 			setVehicle(vehicle);
 		} else {
-			//TODO
-			alert("oh oh: " + vehicle);
+			alert("Vehicle not found");
+			throw Error("Vehicle not found");
 		}
-	}, []);
+	}
 
 	function parseDetailsToItemDetails(object) {
 		return [
